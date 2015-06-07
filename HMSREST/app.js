@@ -11,7 +11,8 @@ var users = require('./routes/users');
 var passport = require('passport')
   , BasicStrategy = require('passport-http').BasicStrategy;
 var GoogleStrategy = require('passport-google').Strategy
-var db = require('mongoskin').db('localhost:27017/HMS');
+var db = require('mongoskin').db('mongodb://localhost:27017/HMS');
+db.bind('users');
 console.log(db.collection('users').find());
 var app = express();
 
@@ -40,10 +41,10 @@ app.use('/users', users);
 /* Basic Http authentication strategy set up */
 passport.use(new BasicStrategy(
   function(username, password, done) {
-    db.collection('users').findOne({username:username}, function (err,user) {
+    db.users.findOne({username:username}, function (err,user) {
       if(err) { return done(err); }
       if(!user) { return done(null, false); }
-      if(!user.validPassword(password)) { return done(null,false) }
+      if(!user.validPassword(password)) { return done(null,false); }
       return done(null,user);
     });
 }));
