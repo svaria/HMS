@@ -1,6 +1,11 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../models/user-model');
+/** HELPER FUNCTIONS */
+function getUserById(id){
+  return User.findOne({_id:id});
+}
+
 
 module.exports = function(passport){
   /* GET users listing. */
@@ -14,19 +19,28 @@ module.exports = function(passport){
    * REQUIRES: req.body contain {username:string, 
    * password:string}
    */
-  router.get('/account/create', function(req, res, next) {
+  router.post('/account/create', function(req, res, next) {
     var user = new User(req.body);
     user.save(function (err,storedUser) {
       if(err){
-        res.redirect('/');
+        res.send();// send failure message;
         return console.error(err);
       }
       console.log("Successfully stored user: ");
       console.log(storedUser);
+      res.send();//send success
     });
   });
 
-  router.post('/account', function(req, res, next) {
+  /** Gets a user specified by user id and authenication token
+   * REQUIRES: req.body contain {id: int, authtoken: string}
+   */
+  router.get('/account/:id', function(req, res, next) {
+     return getUserById(req.params.id);
+     //TODO - Check authToken
+  });
+
+  router.post('/account/:id', function(req, res, next) {
   });
 
   return router;

@@ -3,10 +3,17 @@ var Schema = mongoose.Schema;
 var bcrypt = require('bcrypt');
 var SALT_WORK_FACTOR = 10;
 var UserSchema = new Schema({
-  username: {type: String, required: true, index: {unique:true}},
-  password: {type: String, required: true }
+  username: {type: String, required: true},
+  password: {type: String, required: true },
+  name: {
+    first: {type: String, required: true},
+    last: {type: String, required: true}
+  }
 });
 
+/** encrypts password before saving
+ *
+ */
 UserSchema.pre('save', function(next) {
   var user = this;
   if(!user.isModified('password')) return next();
