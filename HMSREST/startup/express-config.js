@@ -10,7 +10,7 @@ var mongostore = require('connect-mongo')(session);
 
 module.exports = function(app, passport){
   // view engine setup
-  app.set('views', path.join(__dirname, 'views'));
+  app.set('views', '/Users/shaanvaria/Documents/HMS/HMSREST/views');
   app.set('view engine', 'jade');
 
   app.use(logger('dev'));
@@ -33,5 +33,5 @@ module.exports = function(app, passport){
   //app.use(favicon(__dirname + '/public/favicon.ico'));
   app.use(passport.initialize());
   app.use(passport.session());
-  app.use(express.static(path.join(__dirname, 'public')));
+  app.use(express.static('/Users/shaanvaria/Documents/HMS/HMSREST/public'));
 };

@@ -3,8 +3,8 @@ var users = require('../routes/users');
 
 module.exports = function(app,passport) {
   // configure routes correctly
-  app.use('/', index);
-  app.use('/users', users);
+  app.use('/', index(passport));
+  app.use('/users', users(passport));
   app.get('/login',
     passport.authenticate('basic'),
     function(req,res){
@@ -19,7 +19,7 @@ module.exports = function(app,passport) {
   });
 
   // error handlers
-
+  app.set('env', 'development');
   // development error handler
   // will print stacktrace
   if (app.get('env') === 'development') {
