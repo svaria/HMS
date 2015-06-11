@@ -2,15 +2,18 @@ var express = require('express');
 var router = express.Router();
 var User = require('../models/user-model');
 /** HELPER FUNCTIONS */
-function getUserById(id){
-  return User.findOne({_id:id});
+function getUserById(id,callback){
+  User.findOne({_id:id}, function(err, foundUser){
+    if(err) return err;
+    callback(foundUser);
+  });
 }
 
 
 module.exports = function(passport){
   /* GET users listing. */
   router.get('/', function(req, res, next) {
-    res.send('respond with a resource');
+    res.send('noquery');
   });
 
 
@@ -23,12 +26,12 @@ module.exports = function(passport){
     var user = new User(req.body);
     user.save(function (err,storedUser) {
       if(err){
-        res.send();// send failure message;
+        res.send({error: err.message});// send failure message;
         return console.error(err);
       }
       console.log("Successfully stored user: ");
       console.log(storedUser);
-      res.send();//send success
+      res.send({id: storedUser.id});//send success
     });
   });
 
@@ -36,11 +39,16 @@ module.exports = function(passport){
    * REQUIRES: req.body contain {id: int, authtoken: string}
    */
   router.get('/account/:id', function(req, res, next) {
-     return getUserById(req.params.id);
+     getUserById(req.params.id, function(user){
+        res.send(user);
+     });
      //TODO - Check authToken
   });
 
-  router.post('/account/:id', function(req, res, next) {
+
+  router.put('/account/:id', function(req, res, next) {
+    //PUT REQUIRED CHANGES IN req.body
+    
   });
 
   return router;
