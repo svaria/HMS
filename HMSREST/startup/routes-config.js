@@ -11,15 +11,10 @@ module.exports = function(app,passport) {
       res.json(req.user);
     });
 
-  // catch 404 and forward to error handler
-  app.use(function(req, res, next) {
-    var err = new Error('Not Found');
-    err.status = 404;
-    next(err);
-  });
+
 
   // error handlers
-  app.set('env', 'development');
+  //app.set('env', 'development');
   // development error handler
   // will print stacktrace
   if (app.get('env') === 'development') {
@@ -40,6 +35,13 @@ module.exports = function(app,passport) {
       message: err.message,
       error: {}
     });
+  });
+
+  // catch 404 and forward to error handler
+  app.use(function(req, res, next) {
+    var err = new Error('Not Found');
+    err.status = 404;
+    res.status(404).send('404: Sorry cant find that!');
   });
 
 }

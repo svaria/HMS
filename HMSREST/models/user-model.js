@@ -1,14 +1,17 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var ObjectId = Schema.ObjectId;
 var bcrypt = require('bcrypt');
 var SALT_WORK_FACTOR = 10;
+
 var UserSchema = new Schema({
-  username: {type: String, required: true},
+  username: {type: String, required: true, index: {unique: true}},
   password: {type: String, required: true },
   name: {
     first: {type: String, required: true},
     last: {type: String, required: true}
-  }
+  },
+  houseId: {type: ObjectId, ref: 'House', default: undefined}
 });
 
 /** encrypts password before saving
