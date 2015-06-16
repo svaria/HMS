@@ -16,11 +16,13 @@ function handleError(err, res) {
   }
   return false;
 }
-
 /** END HELPER FUNCTIONS */
+
 module.exports = function(passport){
   /* GET users listing. */
-  router.get('/', function(req, res, next) {
+  router.get('/', 
+             passport.authenticate('basic', {failureRedirect: '/login'}),
+             function(req, res, next) {
     res.send('noquery');
   });
 
