@@ -17,7 +17,7 @@ module.exports = function(app, passport){
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(cookieParser());
-  app.use(cookieSession({secret: 12589}));
+  app.use(cookieSession({secret: '12589sfafw1a12'}));
   app.use(session({ 
     secret: '12312901', 
     resave: true, 

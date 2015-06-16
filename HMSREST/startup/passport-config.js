@@ -13,9 +13,9 @@ module.exports = function(passport) {
   });
 
   /* Basic Http authentication strategy set up */
-  passport.use(new BasicStrategy(
-    function(username, password, done) {
-      Users.findOne({username:username}, function (err,user) {
+  passport.use(new BasicStrategy({usernameField: 'email'},
+    function(email, password, done) {
+      Users.findOne({email:email}, function (err,user) {
         if(err) { return done(err); }
         if(!user) { return done(null, false); }
         if(!user.validPassword(password)) { return done(null,false); }
