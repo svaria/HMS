@@ -24,7 +24,7 @@ module.exports = function(passport){
     var user = new User(req.body);
     user.save(function (err,storedUser) {
       if(handleError(err, res)) return;
-  
+
       res.send({id: storedUser._id});//send success
       console.log("Successfully created user: ");
       return console.log(storedUser);
@@ -36,10 +36,10 @@ module.exports = function(passport){
   // those are your tokens, and you will not need
   // to resend the username password if you just use
   // the session cookies that you get back
-  router.get('/login',
+  router.post('/login',
     passport.authenticate('basic', {failureRedirect: '/login'}),
     function(req, res){
-      res.json(req.user);
+      res.send(req.user);
     });
 
   return router;

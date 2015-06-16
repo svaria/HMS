@@ -5,7 +5,7 @@ var bcrypt = require('bcrypt');
 var SALT_WORK_FACTOR = 10;
 
 var UserSchema = new Schema({
-  email: {type: String, required: true, index: {unique: true}},
+  email: {type: String, required: true, index: {unique: true, dropDups:true}},
   password: {type: String, required: true },
   name: {
     first: {type: String, required: true},
@@ -34,11 +34,8 @@ UserSchema.pre('save', function(next) {
 });
 
 
-UserSchema.methods.validPassword = function(candidatePassword, callback) {
-  bcrypt.compare(candidatePassword,this.password, function(err, isValid){
-    if(err) return callback(err);
-    callback(null, isValid);
-  });
+UserSchema.methods.checkPassword = function(candidatePassword) {
+  return bcrypt.compareSync(candidatePassword,this.password);
 }
 
 
