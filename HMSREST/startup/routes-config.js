@@ -1,37 +1,10 @@
 var index = require('../routes/index');
 var users = require('../routes/users');
+var auth = require('../routes/auth');
 
 module.exports = function(app,passport) {
   // configure routes correctly
-
-  /* Account creation Resources */
-  /* Creates a new user and designates an ID,
-   * REQUIRES: req.body contain {email:string,
-   * password:string}
-   */
-  app.post('/signup', function(req, res) {
-    var user = new User(req.body);
-    user.save(function (err,storedUser) {
-      if(handleError(err, res)) return;
-
-      res.send({id: storedUser._id});//send success
-      console.log("Successfully created user: ");
-      return console.log(storedUser);
-    });
-  });
-
-  // login method
-  // in the response headers you will get some session cookies
-  // those are your tokens, and you will not need
-  // to resend the username password if you just use
-  // the session cookies that you get back
-  app.get('/login',
-    passport.authenticate('basic', {failureRedirect: '/login'}),
-    function(req, res){
-      res.json(req.user);
-    });
-
-
+  app.use('/', auth(passport));
   app.use('/users', users(passport));
 
   // error handlers

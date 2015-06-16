@@ -11,6 +11,7 @@ var UserSchema = new Schema({
     first: {type: String, required: true},
     last: {type: String, required: true}
   },
+  phonenum: {type: Number, required: true},
   houseId: {type: ObjectId, ref: 'House', default: undefined}
 });
 
