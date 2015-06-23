@@ -32,7 +32,6 @@ module.exports = function(passport){
   });
 
   /** Gets a user specified by user id and authenication token
-   * REQUIRES: req.body contain {id: int, authtoken: string}
    */
   router.get('/account/:id', 
              passport.authenticate('basic', {failureRedirect: '/login'}),

@@ -8,10 +8,10 @@ var UserSchema = new Schema({
   email: {type: String, required: true, index: {unique: true, dropDups:true}},
   password: {type: String, required: true },
   name: {
-    first: {type: String, required: true},
-    last: {type: String, required: true}
+    first: {type: String},
+    last: {type: String}
   },
-  phonenum: {type: Number, required: true},
+  phonenum: {type: Number},
   houseId: {type: ObjectId, ref: 'House', default: undefined}
 });
 
