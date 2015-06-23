@@ -5,7 +5,11 @@ var ObjectId = Schema.ObjectId;
 var HouseSchema = new Schema({
   creator: {type: ObjectId, ref: 'User'},
   users: [{type: ObjectId, ref: 'User'}],
-  address: {type: String, required: true}
+  address1: {type: String},
+  address2: {type: Number},
+  city: {type: String},
+  state: {type: String},
+  zip: {type: Number}
 });
 
 
