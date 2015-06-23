@@ -14,9 +14,10 @@ module.exports = function(app, passport){
   app.set('view engine', 'jade');
 
   app.use(logger('dev'));
+  app.use(express.static('/Users/shaanvaria/Documents/HMS/HMSREST/public'));
+  app.use(cookieParser());
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: false }));
-  app.use(cookieParser());
   app.use(cookieSession({secret: '12589sfafw1a12'}));
   app.use(session({ 
     secret: '12312901', 
@@ -29,9 +30,6 @@ module.exports = function(app, passport){
   }));
 
   //passport startup
-  // uncomment after placing your favicon in /public
-  //app.use(favicon(__dirname + '/public/favicon.ico'));
   app.use(passport.initialize());
   app.use(passport.session());
-  app.use(express.static('/Users/shaanvaria/Documents/HMS/HMSREST/public'));
 };

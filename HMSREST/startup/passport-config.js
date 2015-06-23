@@ -5,11 +5,13 @@ var User = mongoose.model('User');
 module.exports = function(passport) {
 
   passport.serializeUser(function(user, done) {
-    done(null, user);
+    done(null, user._id);
   });
 
-  passport.deserializeUser(function(obj, done){
-    done(null, obj);
+  passport.deserializeUser(function(id, done){
+    User.findById(id, function(err,user) {
+      done(err, user);
+    });
   });
 
   /* Basic Http authentication strategy set up */

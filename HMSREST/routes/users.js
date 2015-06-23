@@ -26,35 +26,22 @@ function handleError(err, res) {
 module.exports = function(passport){
   /* GET users listing. */
   router.get('/', 
-             passport.authenticate('basic', {failureRedirect: '/login'}),
+             passport.authenticate('session'),
              function(req, res, next) {
     res.send('noquery');
   });
 
   /** Gets a user specified by user id and authenication token
    */
-  router.get('/account/:id', 
-             passport.authenticate('basic', {failureRedirect: '/login'}),
+  router.get('/account',
+             passport.authenticate('session'),
              function(req, res, next) {
-    lookupUserById(req.params.id, function(err, user){
-      if(handleError(err, res)) return;
-      if(!user) {
-        res.send("Could not find user");
-        return console.error("Could not find user");
-      }
-      res.send(user);
-      return;
-    });
-    //TODO - Check authToken
-  });
-
-  router.put('/account/:id', function(req, res, next) {
-    //PUT REQUIRED CHANGES IN req.body
+    res.send(req.user);
   });
 
   /** House Creation resources */
   router.post('/house/create/:userid/',
-              passport.authenticate('basic', {failureRedirect: '/login'}),
+              passport.authenticate('session'),
               function(req, res, next) {
     lookupUserById(req.params.userid, function(err, user){
       if(handleError(err, res)) return;

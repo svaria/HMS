@@ -37,10 +37,15 @@ module.exports = function(passport){
   // to resend the username password if you just use
   // the session cookies that you get back
   router.post('/login',
-    passport.authenticate('basic', {failureRedirect: '/login'}),
+    passport.authenticate('basic'),
     function(req, res){
       res.send(req.user);
     });
+
+  router.get('/logout', function(req, res){
+    req.logout();
+    res.send("logged out");
+  });
 
   return router;
 }
