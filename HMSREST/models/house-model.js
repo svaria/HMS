@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 var ObjectId = Schema.ObjectId;
 
 var HouseSchema = new Schema({
-  leader: {type: ObjectId, ref: 'User', required: true},
+  creator: {type: ObjectId, ref: 'User'},
   users: [{type: ObjectId, ref: 'User'}],
   address: {type: String, required: true}
 });

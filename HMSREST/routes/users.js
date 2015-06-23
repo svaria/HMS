@@ -65,6 +65,7 @@ module.exports = function(passport){
       }
       // o/w make a house
       var house = new House(req.body);
+      //house.users.push(req.params.userid);
       house.save(function(error, storedHouse){
         if(handleError(err, res)) return;
         res.send({houseid: storedHouse._id});
