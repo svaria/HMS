@@ -1,11 +1,12 @@
-var index = require('../routes/index');
 var users = require('../routes/users');
+var houses = require('../routes/houses');
 var auth = require('../routes/auth');
 
 module.exports = function(app,passport) {
   // configure routes correctly
   app.use('/', auth(passport));
   app.use('/users', users(passport));
+  app.use('/houses', houses(passport));
 
   // error handlers
   //app.set('env', 'development');
