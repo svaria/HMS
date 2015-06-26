@@ -2,7 +2,7 @@ var users = require('../routes/users');
 var houses = require('../routes/houses');
 var auth = require('../routes/auth');
 
-module.exports = function(app,passport) {
+module.exports = function(app, passport) {
   // configure routes correctly
   app.use('/', auth(passport));
   app.use('/users', users(passport));

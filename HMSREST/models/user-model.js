@@ -5,14 +5,34 @@ var bcrypt = require('bcrypt');
 var SALT_WORK_FACTOR = 10;
 
 var UserSchema = new Schema({
-  email: {type: String, required: true, index: {unique: true, dropDups:true}},
-  password: {type: String, required: true },
-  name: {
-    first: {type: String},
-    last: {type: String}
+  email: {
+    type: String,
+    required: true,
+    index: {
+      unique: true,
+      dropDups: true
+    }
   },
-  phonenum: {type: Number},
-  houseId: {type: ObjectId, ref: 'House', default: undefined}
+  password: {
+    type: String,
+    required: true
+  },
+  name: {
+    first: {
+      type: String
+    },
+    last: {
+      type: String
+    }
+  },
+  phonenum: {
+    type: Number
+  },
+  houseId: {
+    type: ObjectId,
+    ref: 'House',
+    default: undefined
+  }
 });
 
 /** encrypts password before saving
@@ -20,13 +40,13 @@ var UserSchema = new Schema({
  */
 UserSchema.pre('save', function(next) {
   var user = this;
-  if(!user.isModified('password')) return next();
+  if (!user.isModified('password')) return next();
 
-  bcrypt.genSalt(SALT_WORK_FACTOR, function(err,salt) {
-    if(err) return next(err);
+  bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
+    if (err) return next(err);
 
     bcrypt.hash(user.password, salt, function(err, hash) {
-      if(err) return next(err);
+      if (err) return next(err);
       user.password = hash;
       next();
     });
@@ -35,7 +55,7 @@ UserSchema.pre('save', function(next) {
 
 
 UserSchema.methods.checkPassword = function(candidatePassword) {
-  return bcrypt.compareSync(candidatePassword,this.password);
+  return bcrypt.compareSync(candidatePassword, this.password);
 }
 
 

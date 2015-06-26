@@ -1,20 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../models/user-model');
-/** HELPER FUNCTIONS */
+var utils = require('../utils.js');
 
-/* True if there is an error*/
-function handleError(err, res) {
-  if(err) {
-    res.send(err.message);
-    console.error(err);
-    return true;
-  }
-  return false;
-}
-/** END HELPER FUNCTIONS */
-
-module.exports = function(passport){
+module.exports = function(passport) {
   /* Account authentication and creation Resources */
   /* Creates a new user and designates an ID,
    * REQUIRES: req.body contain {email:string,
@@ -22,12 +11,11 @@ module.exports = function(passport){
    */
   router.post('/signup', function(req, res) {
     var user = new User(req.body);
-    user.save(function (err,storedUser) {
-      if(handleError(err, res)) return;
+    user.save(function(err, storedUser) {
+      if (utils.handleError(err, res)) return;
 
-      res.send({id: storedUser._id});//send success
-      console.log("Successfully created user: ");
-      return console.log(storedUser);
+      res.send(storedUser); //send success
+      return;
     });
   });
 
@@ -38,11 +26,11 @@ module.exports = function(passport){
   // the session cookies that you get back
   router.post('/login',
     passport.authenticate('basic'),
-    function(req, res){
+    function(req, res) {
       res.send(req.user);
     });
 
-  router.get('/logout', function(req, res){
+  router.get('/logout', function(req, res) {
     req.logout();
     res.send("logged out");
   });
