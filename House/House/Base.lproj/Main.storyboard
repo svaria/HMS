@@ -234,15 +234,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create Account" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x1L-vK-lOJ">
-                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="152" y="227" width="120" height="21"/>
-                                </variation>
-                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="auth_bg" translatesAutoresizingMaskIntoConstraints="NO" id="pNj-e3-VyK">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4ZE-GO-QtH">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <constraints>
@@ -266,9 +260,6 @@
                                     <action selector="returnToSignIn:" destination="kJl-o0-NBp" eventType="touchUpInside" id="ut9-se-zbx"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="auth_bg" translatesAutoresizingMaskIntoConstraints="NO" id="pNj-e3-VyK">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign Up" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V1Z-J6-DNb">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -321,10 +312,13 @@
                                         <include reference="vfy-lb-3wk"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <action selector="editingChanged:" destination="kJl-o0-NBp" eventType="editingChanged" id="oZ7-Y3-rcF"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IDT-X6-aBZ">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <color key="backgroundColor" red="0.0" green="0.71764705882352942" blue="0.61960784313725492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.59215686274509804" green="0.8901960784313725" blue="0.85098039215686272" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="207" id="5Wg-HG-2Dm"/>
                                     <constraint firstAttribute="height" constant="32" id="Btb-TE-qLh"/>
@@ -345,6 +339,9 @@
                                         <include reference="Btb-TE-qLh"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <action selector="pressedCreateAccount:" destination="kJl-o0-NBp" eventType="touchUpInside" id="gfm-bG-RUl"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vms-6t-l5c" customClass="AuthTextField" customModule="House" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
@@ -367,6 +364,9 @@
                                         <include reference="lwh-nz-sHW"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <action selector="editingChanged:" destination="kJl-o0-NBp" eventType="editingChanged" id="CwB-Pz-cdu"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -392,9 +392,8 @@
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="x1L-vK-lOJ"/>
-                                <exclude reference="4ZE-GO-QtH"/>
                                 <exclude reference="pNj-e3-VyK"/>
+                                <exclude reference="4ZE-GO-QtH"/>
                                 <exclude reference="V1Z-J6-DNb"/>
                                 <exclude reference="UwT-hs-jcZ"/>
                                 <exclude reference="qkn-3A-zta"/>
@@ -424,9 +423,8 @@
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
-                                <include reference="x1L-vK-lOJ"/>
-                                <include reference="4ZE-GO-QtH"/>
                                 <include reference="pNj-e3-VyK"/>
+                                <include reference="4ZE-GO-QtH"/>
                                 <include reference="V1Z-J6-DNb"/>
                                 <include reference="UwT-hs-jcZ"/>
                                 <include reference="qkn-3A-zta"/>
@@ -456,6 +454,7 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="createAccountButton" destination="IDT-X6-aBZ" id="AWB-Fz-nR2"/>
                         <outlet property="emailField" destination="qkn-3A-zta" id="kZv-sR-eun"/>
                         <outlet property="fullnameField" destination="UwT-hs-jcZ" id="Uve-Of-udm"/>
                         <outlet property="passwordField" destination="vms-6t-l5c" id="jQv-iS-bcx"/>

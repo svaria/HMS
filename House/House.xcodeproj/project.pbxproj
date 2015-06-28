@@ -16,6 +16,9 @@
 		3F7FF5451B262A0700AE7110 /* HouseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7FF5441B262A0700AE7110 /* HouseTests.swift */; };
 		3F7FF5501B26A92300AE7110 /* AuthTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7FF54F1B26A92300AE7110 /* AuthTextField.swift */; };
 		3F7FF5541B27F83F00AE7110 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7FF5531B27F83F00AE7110 /* CreateAccountViewController.swift */; };
+		3FB356411B3A1C75003B60C2 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB356401B3A1C75003B60C2 /* AuthService.swift */; };
+		3FB356431B3A1CE5003B60C2 /* ServiceConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB356421B3A1CE5003B60C2 /* ServiceConstants.swift */; };
+		3FB356451B3A278D003B60C2 /* RequestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB356441B3A278D003B60C2 /* RequestService.swift */; };
 		E45D34EA883439C0BA11E7B0 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3D341B14D323DAFA3418C8 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -44,6 +47,9 @@
 		3F7FF5441B262A0700AE7110 /* HouseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseTests.swift; sourceTree = "<group>"; };
 		3F7FF54F1B26A92300AE7110 /* AuthTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthTextField.swift; sourceTree = "<group>"; };
 		3F7FF5531B27F83F00AE7110 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
+		3FB356401B3A1C75003B60C2 /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		3FB356421B3A1CE5003B60C2 /* ServiceConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceConstants.swift; sourceTree = "<group>"; };
+		3FB356441B3A278D003B60C2 /* RequestService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestService.swift; sourceTree = "<group>"; };
 		D30531AC42948C98EE4C667F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		EE2931DE9A55830114DAACC8 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -99,6 +105,7 @@
 		3F7FF52B1B262A0700AE7110 /* House */ = {
 			isa = PBXGroup;
 			children = (
+				3FB3563F1B3A1B34003B60C2 /* Services */,
 				3F7FF54E1B26A8F100AE7110 /* UIClasses */,
 				3F7FF52E1B262A0700AE7110 /* AppDelegate.swift */,
 				3F7FF5301B262A0700AE7110 /* SignInViewController.swift */,
@@ -142,6 +149,16 @@
 				3F7FF54F1B26A92300AE7110 /* AuthTextField.swift */,
 			);
 			name = UIClasses;
+			sourceTree = "<group>";
+		};
+		3FB3563F1B3A1B34003B60C2 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				3FB356401B3A1C75003B60C2 /* AuthService.swift */,
+				3FB356421B3A1CE5003B60C2 /* ServiceConstants.swift */,
+				3FB356441B3A278D003B60C2 /* RequestService.swift */,
+			);
+			name = Services;
 			sourceTree = "<group>";
 		};
 		74A723CC58D7BA50F00BE8C6 /* Pods */ = {
@@ -305,8 +322,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FB356451B3A278D003B60C2 /* RequestService.swift in Sources */,
 				3F7FF5541B27F83F00AE7110 /* CreateAccountViewController.swift in Sources */,
 				3F7FF5501B26A92300AE7110 /* AuthTextField.swift in Sources */,
+				3FB356411B3A1C75003B60C2 /* AuthService.swift in Sources */,
+				3FB356431B3A1CE5003B60C2 /* ServiceConstants.swift in Sources */,
 				3F7FF5311B262A0700AE7110 /* SignInViewController.swift in Sources */,
 				3F7FF52F1B262A0700AE7110 /* AppDelegate.swift in Sources */,
 			);
