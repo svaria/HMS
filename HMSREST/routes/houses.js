@@ -15,7 +15,7 @@ module.exports = function(passport) {
           _id: user.houseId
         },
         function(err, house) {
-          if (utils.handleError(err)) return;
+          if (utils.handleError(err, res)) return;
           // otherwise successful
           res.send(house);
         });
@@ -27,14 +27,18 @@ module.exports = function(passport) {
     function(req, res, next) {
       var user = req.user;
       if (user.houseId) {
-        res.status(400).send("User already has a house");
+        var houseError = new Error();
+        houseError.name = 'HouseError';
+        houseError.displayableMessage = 'User is already in a House';
+        utils.handleError(houseError, res);
+        return;
       } else {
         // TODO: may need to change house initialization to happen on the server
         req.body.creator = user._id;
         req.body.users = [user._id];
         var house = new House(req.body);
         house.save(function(err, storedHouse) {
-          if (utils.handleError(err)) return;
+          if (utils.handleError(err, res)) return;
           // update user
           var updates = {
             houseId: storedHouse._id,
@@ -43,8 +47,10 @@ module.exports = function(passport) {
 
           User.findOneAndUpdate({
             _id: user._id
-          }, updates, {'new':true},function(err, updatedUser) {
-            if (utils.handleError(err)) return;
+          }, updates, {
+            'new': true
+          }, function(err, updatedUser) {
+            if (utils.handleError(err, res)) return;
             // TODO: do we want user, house, or both
             console.log(updatedUser);
             res.send(updatedUser);
@@ -60,11 +66,15 @@ module.exports = function(passport) {
     function(req, res, next) {
       var user = req.user;
       if (user.houseId) {
-        res.status(400).send("User already is in a house");
+        var houseError = new Error();
+        houseError.name = 'HouseError';
+        houseError.displayableMessage = 'User is already in a House';
+        utils.handleError(houseError, res);
+        return;
       } else {
         // find the house and join it
         House.findOne(req.body.externalId, function(err, house) {
-          if (utils.handleError(err)) return;
+          if (utils.handleError(err, res)) return;
           // join house
           var updatedUsers = house.users;
           updatedUsers.push(user._id);
@@ -84,8 +94,10 @@ module.exports = function(passport) {
             };
             User.findOneAndUpdate({
               _id: user._id
-            }, userUpdates, {'new': true}, function(err, updatedUser) {
-              if (utils.handleError(err)) return;
+            }, userUpdates, {
+              'new': true
+            }, function(err, updatedUser) {
+              if (utils.handleError(err, res)) return;
               res.status(200).send(updatedUser);
             });
           });
