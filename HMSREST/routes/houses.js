@@ -88,7 +88,7 @@ module.exports = function(passport) {
           House.findOneAndUpdate({
             _id: house._id
           }, houseUpdates, function(err, updatedHouse) {
-            if (utils.handleError(err ,res)) return;
+            if (utils.handleError(err, res)) return;
             // after house update success, update user model
             var userUpdates = {
               houseId: updatedHouse._id,
