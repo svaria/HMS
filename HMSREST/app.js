@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var mongoose = require('mongoose');
 var passport = require('passport');
+var autoIncrement = require('mongoose-auto-increment');
 
 
 
@@ -22,7 +23,7 @@ connect();
 
 mongoose.connection.on('error', console.log);
 mongoose.connection.on('disconnected', connect);
-
+autoIncrement.initialize(mongoose.connection);
 
 // Load models
 require('./models/user-model');

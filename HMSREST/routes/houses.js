@@ -27,22 +27,26 @@ module.exports = function(passport) {
     function(req, res, next) {
       var user = req.user;
       if (user.houseId) {
-        res.send("User already has a house");
+        res.status(400).send("User already has a house");
       } else {
         // TODO: may need to change house initialization to happen on the server
+        req.body.creator = user._id;
+        req.body.users = [user._id];
         var house = new House(req.body);
         house.save(function(err, storedHouse) {
-          if (handleError(err)) return;
+          if (utils.handleError(err)) return;
           // update user
-          updates = {
-            houseId: storedHouse._id
+          var updates = {
+            houseId: storedHouse._id,
+            houseExternalId: storedHouse.externalId
           };
 
           User.findOneAndUpdate({
             _id: user._id
-          }, updates, function(err, updatedUser) {
-            if (handleError(err)) return;
+          }, updates, {'new':true},function(err, updatedUser) {
+            if (utils.handleError(err)) return;
             // TODO: do we want user, house, or both
+            console.log(updatedUser);
             res.send(updatedUser);
           });
         });
@@ -50,15 +54,42 @@ module.exports = function(passport) {
     });
 
   // join house
+  // Requires req.body to have param externalId
   router.post('/join',
     passport.authenticate('session'),
     function(req, res, next) {
       var user = req.user;
       if (user.houseId) {
-        res.send("User already is in a house");
+        res.status(400).send("User already is in a house");
       } else {
-        // TODO: update this 
-        //House.findOne(req.houseId)
+        // find the house and join it
+        House.findOne(req.body.externalId, function(err, house) {
+          if (utils.handleError(err)) return;
+          // join house
+          var updatedUsers = house.users;
+          updatedUsers.push(user._id);
+          var houseUpdates = {
+            users: updatedUsers
+          };
+
+          // first find house to update with new user
+          House.findOneAndUpdate({
+            _id: house._id
+          }, houseUpdates, function(err, updatedHouse) {
+            if (utils.handleError(err)) return;
+            // after house update success, update user model
+            var userUpdates = {
+              houseId: updatedHouse._id,
+              houseExternalId: updatedHouse.externalId
+            };
+            User.findOneAndUpdate({
+              _id: user._id
+            }, userUpdates, {'new': true}, function(err, updatedUser) {
+              if (utils.handleError(err)) return;
+              res.status(200).send(updatedUser);
+            });
+          });
+        });
       }
     });
 

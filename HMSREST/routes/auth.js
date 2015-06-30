@@ -13,7 +13,6 @@ module.exports = function(passport) {
     var user = new User(req.body);
     user.save(function(err, storedUser) {
       if (utils.handleError(err, res)) return;
-
       res.send(storedUser); //send success
       return;
     });

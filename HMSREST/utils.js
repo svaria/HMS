@@ -1,7 +1,7 @@
 /* True if there is an error*/
 module.exports.handleError = function handleError(err, res) {
   if (err) {
-    res.send(err.message);
+    res.status(400).send(err);
     console.error(err);
     return true;
   }

@@ -31,7 +31,11 @@ var UserSchema = new Schema({
   houseId: {
     type: ObjectId,
     ref: 'House',
-    default: undefined
+    default: null
+  },
+  houseExternalId: {
+    type: Number,
+    default: -1
   }
 });
 
