@@ -8,9 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		3F77AC001B38F5E600B1FB22 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 3F77ABFF1B38F5E600B1FB22 /* Podfile */; };
+		3F78448E1B40A40500B6D125 /* Alamofire-SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F78448D1B40A40500B6D125 /* Alamofire-SwiftyJSON.swift */; };
+		3F7844911B40AD5400B6D125 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7844901B40AD5400B6D125 /* User.swift */; };
 		3F7FF52F1B262A0700AE7110 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7FF52E1B262A0700AE7110 /* AppDelegate.swift */; };
 		3F7FF5311B262A0700AE7110 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7FF5301B262A0700AE7110 /* SignInViewController.swift */; };
-		3F7FF5341B262A0700AE7110 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F7FF5321B262A0700AE7110 /* Main.storyboard */; };
+		3F7FF5341B262A0700AE7110 /* UserCreation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F7FF5321B262A0700AE7110 /* UserCreation.storyboard */; };
 		3F7FF5361B262A0700AE7110 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F7FF5351B262A0700AE7110 /* Images.xcassets */; };
 		3F7FF5391B262A0700AE7110 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F7FF5371B262A0700AE7110 /* LaunchScreen.xib */; };
 		3F7FF5451B262A0700AE7110 /* HouseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7FF5441B262A0700AE7110 /* HouseTests.swift */; };
@@ -19,6 +21,8 @@
 		3FB356411B3A1C75003B60C2 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB356401B3A1C75003B60C2 /* AuthService.swift */; };
 		3FB356431B3A1CE5003B60C2 /* ServiceConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB356421B3A1CE5003B60C2 /* ServiceConstants.swift */; };
 		3FB356451B3A278D003B60C2 /* RequestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB356441B3A278D003B60C2 /* RequestService.swift */; };
+		3FE871E61B40883C0048DD3D /* AppModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3FE871E41B40883C0048DD3D /* AppModel.xcdatamodeld */; };
+		3FE871E81B4099790048DD3D /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE871E71B4099790048DD3D /* Reachability.swift */; };
 		E45D34EA883439C0BA11E7B0 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3D341B14D323DAFA3418C8 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -34,12 +38,14 @@
 
 /* Begin PBXFileReference section */
 		0C3D341B14D323DAFA3418C8 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3F77ABFF1B38F5E600B1FB22 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		3F77ABFF1B38F5E600B1FB22 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		3F78448D1B40A40500B6D125 /* Alamofire-SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Alamofire-SwiftyJSON.swift"; sourceTree = "<group>"; };
+		3F7844901B40AD5400B6D125 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3F7FF5291B262A0700AE7110 /* House.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = House.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F7FF52D1B262A0700AE7110 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F7FF52E1B262A0700AE7110 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3F7FF5301B262A0700AE7110 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
-		3F7FF5331B262A0700AE7110 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3F7FF5331B262A0700AE7110 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/UserCreation.storyboard; sourceTree = "<group>"; };
 		3F7FF5351B262A0700AE7110 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		3F7FF5381B262A0700AE7110 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		3F7FF53E1B262A0700AE7110 /* HouseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HouseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -50,6 +56,8 @@
 		3FB356401B3A1C75003B60C2 /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		3FB356421B3A1CE5003B60C2 /* ServiceConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceConstants.swift; sourceTree = "<group>"; };
 		3FB356441B3A278D003B60C2 /* RequestService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestService.swift; sourceTree = "<group>"; };
+		3FE871E51B40883C0048DD3D /* AppModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AppModel.xcdatamodel; sourceTree = "<group>"; };
+		3FE871E71B4099790048DD3D /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		D30531AC42948C98EE4C667F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		EE2931DE9A55830114DAACC8 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -81,6 +89,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		3F78448F1B40AD3F00B6D125 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3F7844901B40AD5400B6D125 /* User.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		3F7FF5201B262A0700AE7110 = {
 			isa = PBXGroup;
 			children = (
@@ -105,11 +121,13 @@
 		3F7FF52B1B262A0700AE7110 /* House */ = {
 			isa = PBXGroup;
 			children = (
+				3F78448F1B40AD3F00B6D125 /* Models */,
 				3FB3563F1B3A1B34003B60C2 /* Services */,
 				3F7FF54E1B26A8F100AE7110 /* UIClasses */,
 				3F7FF52E1B262A0700AE7110 /* AppDelegate.swift */,
+				3FE871E41B40883C0048DD3D /* AppModel.xcdatamodeld */,
 				3F7FF5301B262A0700AE7110 /* SignInViewController.swift */,
-				3F7FF5321B262A0700AE7110 /* Main.storyboard */,
+				3F7FF5321B262A0700AE7110 /* UserCreation.storyboard */,
 				3F7FF5351B262A0700AE7110 /* Images.xcassets */,
 				3F7FF5371B262A0700AE7110 /* LaunchScreen.xib */,
 				3F7FF52C1B262A0700AE7110 /* Supporting Files */,
@@ -157,6 +175,8 @@
 				3FB356401B3A1C75003B60C2 /* AuthService.swift */,
 				3FB356421B3A1CE5003B60C2 /* ServiceConstants.swift */,
 				3FB356441B3A278D003B60C2 /* RequestService.swift */,
+				3FE871E71B4099790048DD3D /* Reachability.swift */,
+				3F78448D1B40A40500B6D125 /* Alamofire-SwiftyJSON.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -253,7 +273,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F7FF5341B262A0700AE7110 /* Main.storyboard in Resources */,
+				3F7FF5341B262A0700AE7110 /* UserCreation.storyboard in Resources */,
 				3F7FF5391B262A0700AE7110 /* LaunchScreen.xib in Resources */,
 				3F77AC001B38F5E600B1FB22 /* Podfile in Resources */,
 				3F7FF5361B262A0700AE7110 /* Images.xcassets in Resources */,
@@ -324,11 +344,15 @@
 			files = (
 				3FB356451B3A278D003B60C2 /* RequestService.swift in Sources */,
 				3F7FF5541B27F83F00AE7110 /* CreateAccountViewController.swift in Sources */,
+				3F78448E1B40A40500B6D125 /* Alamofire-SwiftyJSON.swift in Sources */,
 				3F7FF5501B26A92300AE7110 /* AuthTextField.swift in Sources */,
 				3FB356411B3A1C75003B60C2 /* AuthService.swift in Sources */,
 				3FB356431B3A1CE5003B60C2 /* ServiceConstants.swift in Sources */,
+				3FE871E81B4099790048DD3D /* Reachability.swift in Sources */,
 				3F7FF5311B262A0700AE7110 /* SignInViewController.swift in Sources */,
 				3F7FF52F1B262A0700AE7110 /* AppDelegate.swift in Sources */,
+				3FE871E61B40883C0048DD3D /* AppModel.xcdatamodeld in Sources */,
+				3F7844911B40AD5400B6D125 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -351,12 +375,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		3F7FF5321B262A0700AE7110 /* Main.storyboard */ = {
+		3F7FF5321B262A0700AE7110 /* UserCreation.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				3F7FF5331B262A0700AE7110 /* Base */,
 			);
-			name = Main.storyboard;
+			name = UserCreation.storyboard;
 			sourceTree = "<group>";
 		};
 		3F7FF5371B262A0700AE7110 /* LaunchScreen.xib */ = {
@@ -538,6 +562,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		3FE871E41B40883C0048DD3D /* AppModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				3FE871E51B40883C0048DD3D /* AppModel.xcdatamodel */,
+			);
+			currentVersion = 3FE871E51B40883C0048DD3D /* AppModel.xcdatamodel */;
+			path = AppModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 3F7FF5211B262A0700AE7110 /* Project object */;
 }

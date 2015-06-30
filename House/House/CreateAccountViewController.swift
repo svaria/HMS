@@ -8,6 +8,8 @@
 
 import UIKit
 import Alamofire
+import SwiftyJSON
+import CoreData
 
 class CreateAccountViewController: UIViewController {
     
@@ -26,38 +28,93 @@ class CreateAccountViewController: UIViewController {
         var firstName: String = fullNameArr[0]
         var lastName: String = fullNameArr.count > 1 ? fullNameArr[1] : ""
         
-//        let route = ServiceConstants.baseUrl + ServiceConstants.Routes.signup
-//
-//        // JSON Body
-//        let parameters : [String : AnyObject] = [
-//            "email": ,
-//            "password": "poop",
-//            "name": [
-//                "first": "Daniel",
-//                "last": "Gorziglia"
-//            ]
-//        ]
-//
-//        // Fetch Request
-//        Alamofire.request(.POST, route,
-//            parameters: parameters, encoding: .JSON)
-//            .validate(statusCode: 200..<300)
-//            .responseJSON{(request, response, JSON, error) in
-//                if (error == nil)
-//                {
-//                    println("HTTP Response Body: \(JSON)")
-//                }
-//                else
-//                {
-//                    println("HTTP HTTP Request failed: \(error)")
-//                }
-//        }
+        let route = ServiceConstants.baseUrl + ServiceConstants.Routes.signup
+
+        // JSON Body
+        let parameters : [String : AnyObject] = [
+            "email": email,
+            "password": password,
+            "name": [
+                "first": firstName,
+                "last": lastName
+            ]
+        ]
+
+        // Fetch Request
+        Alamofire.request(.POST, route,
+            parameters: parameters, encoding: .JSON)
+            .validate(statusCode: 200..<300)
+            .responseJSON{(request, response, json, error) in
+                if (error == nil)
+                {
+                    if response!.statusCode == 200 {
+                        var json = JSON(json!)
+                        self.handleSuccessOnSignup(json, response: response!)
+                    } else {
+                        // TODO: check for duplicate email
+                    }
+                }
+                else
+                {
+                    self.handleErrorOnSignup("Server Error. Please try again later.")
+                }
+        }
     }
     
+    func handleErrorOnSignup(errorMessage: String) {
+        let alertController: UIAlertController = UIAlertController(title: "Signup Error", message: errorMessage, preferredStyle: .Alert)
+        
+        // Create "ok" button
+        let okAction: UIAlertAction = UIAlertAction(title: "Ok", style: .Cancel) { action -> Void in
+            // Don't care if pressed
+        }
+        alertController.addAction(okAction)
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
+        
+        // Re enable the button
+        setCreateAccountButtonState(true)
+    }
+    
+    func handleSuccessOnSignup(json: JSON, response: NSHTTPURLResponse) {
+        // Gather info to store
+        let userID = json["_id"].string
+        let email = json["email"].string
+        let firstName = json["name"]["first"].string
+        let lastName = json["name"]["last"].string
+        let authCookie = response.allHeaderFields["Set-Cookie"] as? String
+        
+        let appDelegate =
+        UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext!
+        
+        let entity = NSEntityDescription.entityForName("User",
+            inManagedObjectContext:
+            managedContext)
+        
+        let user = NSManagedObject(entity: entity!,
+            insertIntoManagedObjectContext:managedContext)
+        
+        // Populate the entity
+        user.setValue(userID, forKey: "userID")
+        user.setValue(email, forKey: "email")
+        user.setValue(firstName, forKey: "firstName")
+        user.setValue(lastName, forKey: "lastName")
+        user.setValue(authCookie, forKey: "authCookie")
+        
+        // Save the data
+        var error: NSError?
+        if !managedContext.save(&error) {
+            println("Could not save \(error)")
+        } else {
+            // Load SetupHouseViewController
+            let vc = self.storyboard!.instantiateViewControllerWithIdentifier("SetupHouseViewController") as! UIViewController
+            self.presentViewController(vc, animated: true, completion: nil)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
         // Make password textField secureText
         passwordField.secureTextEntry = true
@@ -131,21 +188,17 @@ class CreateAccountViewController: UIViewController {
             createAccountButton.setTitle("Creating Account...", forState: .Disabled)
         }
         
-        // Make the call to create the account
-        sendCreateAccount(emailField.text, password: passwordField.text, fullName: fullnameField.text)
-        
+        // Check for network connection
+        if !Reachability.isConnectedToNetwork() {
+            errorMessage = "Could not reach network. Please check your internet connection and try again."
+        }
         
         // Show an alert if there was an error
         if errorMessage != "" {
-            let alertController: UIAlertController = UIAlertController(title: "Signup Error", message: errorMessage, preferredStyle: .Alert)
-            
-            // Create "ok" button
-            let okAction: UIAlertAction = UIAlertAction(title: "Ok", style: .Cancel) { action -> Void in
-                // Don't care if pressed
-            }
-            alertController.addAction(okAction)
-            
-            self.presentViewController(alertController, animated: true, completion: nil)
+            self.handleErrorOnSignup(errorMessage)
+        } else {
+            // Make the call to create the account
+            sendCreateAccount(emailField.text, password: passwordField.text, fullName: fullnameField.text)
         }
     }
     

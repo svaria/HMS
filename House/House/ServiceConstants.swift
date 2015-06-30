@@ -8,7 +8,7 @@
 
 
 struct ServiceConstants {
-    static let baseUrl = "http://10.0.1.23:3000/"
+    static let baseUrl = "http://10.0.1.51:3000/"
     
     // API Routes //
     struct Routes {

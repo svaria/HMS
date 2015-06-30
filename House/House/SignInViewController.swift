@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class SignInViewController: UIViewController {
     
@@ -35,6 +36,13 @@ class SignInViewController: UIViewController {
     
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    // Check to see if we are logged in
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+
     }
     
     override func viewDidAppear(animated: Bool) {
