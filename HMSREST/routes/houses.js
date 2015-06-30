@@ -22,6 +22,8 @@ module.exports = function(passport) {
     });
 
   /** House Creation resources */
+
+  /*  req.body must contain address information */
   router.post('/create',
     passport.authenticate('session'),
     function(req, res, next) {
@@ -86,7 +88,7 @@ module.exports = function(passport) {
           House.findOneAndUpdate({
             _id: house._id
           }, houseUpdates, function(err, updatedHouse) {
-            if (utils.handleError(err)) return;
+            if (utils.handleError(err ,res)) return;
             // after house update success, update user model
             var userUpdates = {
               houseId: updatedHouse._id,

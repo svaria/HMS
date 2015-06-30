@@ -8,6 +8,7 @@ module.exports = function(passport) {
   /* Creates a new user and designates an ID,
    * REQUIRES: req.body contain {email:string,
    * password:string}
+   * DOES NOT log you in, you need to issue separate /login request
    */
   router.post('/signup', function(req, res) {
     var user = new User(req.body);
@@ -29,6 +30,7 @@ module.exports = function(passport) {
       res.send(req.user);
     });
 
+  // invalidates cookies
   router.get('/logout', function(req, res) {
     req.logout();
     res.send("logged out");

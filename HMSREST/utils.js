@@ -16,6 +16,7 @@ module.exports.handleError = function handleError(err, res) {
         handleMongoError(err, res);
         break;
       default:
+        // just send the message if it exists o/w serve generic message
         if (!err.displayableMessage) {
           err.displayableMessage = "There was an issue with your request";
         }
