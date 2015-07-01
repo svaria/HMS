@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../models/user-model');
-var utils = require('../utils.js');
+var utils = require('../utils');
 var House = require('../models/house-model');
 
 
@@ -53,9 +53,11 @@ module.exports = function(passport) {
             'new': true
           }, function(err, updatedUser) {
             if (utils.handleError(err, res)) return;
-            // TODO: do we want user, house, or both
             console.log(updatedUser);
-            res.send(updatedUser);
+            res.send({
+                'user': updatedUser,
+                'house': storedHouse
+              });
           });
         });
       }
@@ -76,6 +78,7 @@ module.exports = function(passport) {
       } else {
         // find the house and join it
         House.findOne(req.body.externalId, function(err, house) {
+          err.displayableMessage("You entered a bad house code");
           if (utils.handleError(err, res)) return;
           // join house
           var updatedUsers = house.users;
@@ -87,7 +90,9 @@ module.exports = function(passport) {
           // first find house to update with new user
           House.findOneAndUpdate({
             _id: house._id
-          }, houseUpdates, function(err, updatedHouse) {
+          }, houseUpdates, {
+            new: true
+          }, function(err, updatedHouse) {
             if (utils.handleError(err, res)) return;
             // after house update success, update user model
             var userUpdates = {
@@ -100,13 +105,15 @@ module.exports = function(passport) {
               'new': true
             }, function(err, updatedUser) {
               if (utils.handleError(err, res)) return;
-              res.status(200).send(updatedUser);
+              res.status(200).send({
+                'user': updatedUser,
+                'house': updatedHouse
+              });
             });
           });
         });
       }
     });
-
 
   return router;
 };
