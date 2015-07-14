@@ -55,9 +55,9 @@ module.exports = function(passport) {
             if (utils.handleError(err, res)) return;
             console.log(updatedUser);
             res.send({
-                'user': updatedUser,
-                'house': storedHouse
-              });
+              'user': updatedUser,
+              'house': storedHouse
+            });
           });
         });
       }

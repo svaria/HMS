@@ -36,7 +36,11 @@ var UserSchema = new Schema({
   houseExternalId: {
     type: Number,
     default: -1
-  }
+  },
+  items: [{
+    type: ObjectId,
+    ref: 'Item'
+  }]
 });
 
 /** encrypts password before saving */

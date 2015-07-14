@@ -33,7 +33,11 @@ var HouseSchema = new Schema({
   },
   zip: {
     type: Number
-  }
+  },
+  tags: [{
+    type: ObjectId,
+    ref: 'Tag'
+  }]
 });
 
 HouseSchema.plugin(autoIncrement.plugin, {
