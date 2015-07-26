@@ -1,5 +1,6 @@
 var users = require('../routes/users');
 var houses = require('../routes/houses');
+var tags = require('../routes/tags');
 var auth = require('../routes/auth');
 
 module.exports = function(app, passport) {
@@ -7,6 +8,7 @@ module.exports = function(app, passport) {
   app.use('/', auth(passport));
   app.use('/users', users(passport));
   app.use('/houses', houses(passport));
+  app.use('/tags', tags(passport));
 
   // error handlers
   //app.set('env', 'development');
