@@ -28,6 +28,7 @@ module.exports = function(passport) {
     passport.authenticate('session'),
     function(req, res, next) {
       var user = req.user;
+      if(!user) res.status(401).send();
       if (user.houseId) {
         var houseError = new Error();
         houseError.name = 'HouseError';
